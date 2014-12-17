@@ -166,6 +166,8 @@ Class Crumbs {
             // get ancestors and add them to the trail
             $ancestors = get_ancestors(get_the_ID(), 'page');
 
+            $ancestors = array_reverse($ancestors);
+
             if(count($ancestors) > 0) {
                 foreach($ancestors as $page_id) {
                     $this->add_breadcrumb(get_the_title($page_id), get_permalink($page_id));
