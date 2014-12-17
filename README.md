@@ -1,4 +1,4 @@
-# WP Crumbs v1.0.0
+# WP Crumbs v1.0.1
 
 Simple Wordpress Breadcrumbs
 
