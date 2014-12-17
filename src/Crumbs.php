@@ -126,7 +126,7 @@ Class Crumbs {
     */
     function get_breadcrumbs() {
         $breadcrumbs = $this->breadcrumbs;
-        $breadcrumbs = apply_filters('get_breadcrumbs', $breadcrumbs);
+        $breadcrumbs = apply_filters('get_crumbs', $breadcrumbs);
         return $breadcrumbs;
     }
 
