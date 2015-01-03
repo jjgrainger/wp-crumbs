@@ -71,7 +71,7 @@ the_crumbs(array(
 
 Use `get_crumbs()` to retrieve an array of crumbs. Each crumb has a `title` and `url`.
 
-##### example
+##### Example
 
 ```php
 $breadcrumbs = get_crumbs();
@@ -79,12 +79,12 @@ $breadcrumbs = get_crumbs();
 print_r($breadcrumbs);
 ```
 
-##### output
+##### Output
 ```php
 Array(
     [0] => Array(
         [title] => "Home"
-        [url] => http://site.com/
+        [url] => "http://site.com/"
     )
     [1] => Array(
         [title] => "Blog"
@@ -105,7 +105,7 @@ You can modify the returned array and/or create a function to create an output o
 
 You can further modify the crumbs array using a filter on `get_crumbs`. This will also effect the output of `the_crumbs`.
 
-##### example
+##### Example
 
 ```php
 
@@ -134,7 +134,7 @@ add_filter('get_crumbs', 'modify_crumbs');
 
 when modifying the crumb trail you can add new crumbs at specific points.
 
-##### example
+##### Example
 
 ```php
 // Example: add post type archive on taxonomy archive page
