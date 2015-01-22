@@ -205,6 +205,26 @@ Class Crumbs {
             $this->add_breadcrumb(single_tag_title('', false));
         }
 
+        // if is date archive
+        if(is_date()) {
+            $this->add_breadcrumb($this->options['blog'], $this->options['blog_url']);
+
+            // for day
+            if(is_day()) {
+                $this->add_breadcrumb(get_the_date());
+            }
+
+            // for month
+            if(is_month()) {
+                $this->add_breadcrumb(get_the_date('F Y'));
+            }
+
+            // for year
+            if(is_year()) {
+                $this->add_breadcrumb(get_the_date('Y'));
+            }
+        }
+
         // single post
         if(is_singular('post')) {
 
