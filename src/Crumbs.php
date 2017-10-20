@@ -55,7 +55,7 @@ Class Crumbs {
         if(get_option('show_on_front') == 'page')  {
             $this->defaults['blog_url'] = get_permalink(get_option('page_for_posts'));
         } else {
-            $this->defaults['blog_url'] = bloginfo('url');
+            $this->defaults['blog_url'] = get_bloginfo('url');
         }
 
         // merge options
