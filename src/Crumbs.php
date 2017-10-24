@@ -95,7 +95,7 @@ Class Crumbs {
 
             // otherwise make a span
             } else {
-                $html .= sprintf('<span>%s</a>', $crumb['title']);
+                $html .= sprintf('<span>%s</span>', $crumb['title']);
             }
 
             // add seperators
