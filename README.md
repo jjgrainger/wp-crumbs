@@ -1,29 +1,20 @@
 # WP Crumbs v1.0.2
 
-Simple Wordpress Breadcrumbs
+> Simple Wordpress Breadcrumbs
+
+[![Build Status](https://travis-ci.org/jjgrainger/wp-crumbs.svg?branch=master)](https://travis-ci.org/jjgrainger/wp-crumbs) [![Total Downloads](https://poser.pugx.org/jjgrainger/wp-crumbs/downloads)](https://packagist.org/packages/jjgrainger/wp-crumbs) [![Latest Stable Version](https://poser.pugx.org/jjgrainger/wp-crumbs/v/stable)](https://packagist.org/packages/jjgrainger/wp-crumbs) [![License](https://poser.pugx.org/jjgrainger/wp-crumbs/license)](https://packagist.org/packages/jjgrainger/wp-crumbs)
+
+## Requirements
+
+* PHP >= 7.2
+* [Composer](https://getcomposer.org/)
+* [WordPress](https://wordpress.org) 5.3.2
 
 ## Installation
 
-#### Install with Composer
-
-Add the package to your projects `composer.json` file. Visit [getcomposer.org](http://getcomposer.org/) more information.
-
-```json
-{
-    "require": {
-        "jjgrainger/wp-crumbs": "dev-master"
-    }
-}
 ```
-
-#### Install Manually
-
-Download and include the class file into your themes `functions.php`:
-
-```php
-include_once 'path/to/Crumbs.php';
+$ composer require jjgrainger/wp-crumbs
 ```
-
 
 ## Usage
 
@@ -43,13 +34,13 @@ The defaults for each option are display below.
 ##### Example
 
 ```php
-the_crumbs(array(
-    'home' => 'Home',       // Title for the Home (front page) link
-    'blog' => 'Blog',       // Title for the blog home page
-    'seperator' => '/',     // Seperator to use between each crumb (string or false)
-    'class' => 'crumbs',    // The class(es) applied to the wrapper element ('crumbs', 'nav crumbs')
-    'element' => 'nav'      // The HTML element to use (div, nav, ol, ul)
-));
+the_crumbs( [
+    'home'      => 'Home',   // Title for the Home (front page) link
+    'blog'      => 'Blog',   // Title for the blog home page
+    'seperator' => '/',      // Seperator to use between each crumb (string or false)
+    'class'     => 'crumbs', // The class(es) applied to the wrapper element ('crumbs', 'nav crumbs')
+    'element'   => 'nav'     // The HTML element to use (div, nav, ol, ul)
+] );
 ```
 
 ##### Output
@@ -76,7 +67,7 @@ Use `get_crumbs()` to retrieve an array of crumbs. Each crumb has a `title` and 
 ```php
 $breadcrumbs = get_crumbs();
 
-print_r($breadcrumbs);
+print_r( $breadcrumbs );
 ```
 
 ##### Output
@@ -110,12 +101,11 @@ You can further modify the crumbs array using a filter on `get_crumbs`. This wil
 ```php
 
 // Example: modify title for a custom post type
-function modify_crumbs($crumbs) {
-
+function modify_crumbs( $crumbs ) {
     // if on events archive change title to shows
-    if(is_post_type_archive('event') || is_singular('event')) {
-        for($i = 0; $i < count($crumbs); $i++) {
-            if($crumbs[$i]['title'] === 'Events') {
+    if ( is_post_type_archive( 'event' ) || is_singular( 'event' ) ) {
+        for ( $i = 0; $i < count($crumbs); $i++ ) {
+            if ( $crumbs[$i]['title'] === 'Events' ) {
                 $crumbs[$i]['title'] = "Shows";
             }
         }
@@ -124,7 +114,7 @@ function modify_crumbs($crumbs) {
     return $crumbs;
 }
 
-add_filter('get_crumbs', 'modify_crumbs');
+add_filter( 'get_crumbs', 'modify_crumbs' );
 ```
 
 #### array_insert()
@@ -138,26 +128,23 @@ when modifying the crumb trail you can add new crumbs at specific points.
 
 ```php
 // Example: add post type archive on taxonomy archive page
-function modify_crumbs($crumbs) {
-
+function modify_crumbs( $crumbs ) {
     // if on the events category archive page
-    if(is_tax('event-categories')) {
-
+    if ( is_tax( 'event-categories' ) ) {
         // create a new crumb
-        $crumb = array(
+        $crumb = [
             'title' => "Shows",
-            'url' => site_url('/shows')
-        );
+            'url'   => site_url( '/shows' ),
+        ];
 
         // add the new crumb at the index of 1
-        $crumbs = array_insert($crumbs, $crumb, 1);
+        $crumbs = array_insert( $crumbs, $crumb, 1 );
     }
 
     return $crumbs;
-
 }
 
-add_filter('get_crumbs', 'modify_crumbs');
+add_filter( 'get_crumbs', 'modify_crumbs' );
 ```
 
 ## Notes
@@ -168,5 +155,6 @@ add_filter('get_crumbs', 'modify_crumbs');
 ## Author
 
 **Joe Grainger**
-* [http://jjgrainger.co.uk](http://jjgrainger.co.uk)
-* [http://twitter.com/jjgrainger](http://twitter.com/jjgrainger)
+
+* [https://jjgrainger.co.uk](https://jjgrainger.co.uk)
+* [https://twitter.com/jjgrainger](https://twitter.com/jjgrainger)
